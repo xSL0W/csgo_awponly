@@ -28,14 +28,14 @@ public OnPluginStart()
 
 public void Event_PlayerSpawn(Event event, const char[] name, bool dontBroadcast)
 {
-    if(g_cvEnablePlugin.IntValue == 1)
+    if(g_cvEnablePlugin.BoolValue)
         RequestFrame(SetWeapons, GetClientOfUserId(GetEventInt(event, "userid")));
 }
 
 
 public void OnMapStart()
 {
-    if(g_cvEnablePlugin.IntValue == 1 && g_cvDeleteMapWeapons.IntValue == 1)
+    if(g_cvEnablePlugin.BoolValue && g_cvDeleteMapWeapons.BoolValue)
         ServerCommand("sm_cvar mp_weapons_allow_map_placed 0")
 }
 
@@ -52,7 +52,7 @@ public void SetWeapons(int client)
 {
     if(IsClientValid(client) && IsPlayerAlive(client))
     {
-        if(g_cvKnifeOnlyWarmup.IntValue == 1)
+        if(g_cvKnifeOnlyWarmup.BoolValue)
         {
             if(GameRules_GetProp("m_bWarmupPeriod") == 1)
             {
