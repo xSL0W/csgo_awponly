@@ -50,19 +50,13 @@ stock bool IsClientValid(int client)
 
 public void SetWeapons(int client)
 {
-    if(IsClientValid(client) && IsPlayerAlive(client))
+    if(IsClientValid(client))
     {
         if(g_cvKnifeOnlyWarmup.BoolValue)
         {
             if(GameRules_GetProp("m_bWarmupPeriod") == 1)
             {
                 Client_RemoveAllWeapons(client, "", true);
-                GivePlayerItem(client, "weapon_knife");
-            }
-            else
-            {
-                Client_RemoveAllWeapons(client, "", true);
-                GivePlayerItem(client, "weapon_awp");
                 GivePlayerItem(client, "weapon_knife");
             }
         }
